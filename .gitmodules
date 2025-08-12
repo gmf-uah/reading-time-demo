@@ -1,0 +1,3 @@
+[submodule "modules/getTextContent"]
+	path = modules/getTextContent
+	url = https://github.com/gmf-uah/enhanced-textContent

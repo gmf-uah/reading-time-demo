@@ -15,7 +15,10 @@
   "permissions": ["scripting"],
   "content_scripts": [
     {
-      "js": ["./scripts/generic.js"],
+      "js": [
+        "./modules/getTextContent/GetTextContent.js",
+        "./scripts/generic.js"
+      ],
       "run_at": "document_end",
       "matches": ["<all_urls>"],
       "exclude_matches": [
@@ -23,7 +26,10 @@
       ]
     },
     {
-      "js": ["./scripts/wikipedia.js"],
+      "js": [
+        "./modules/getTextContent/GetTextContent.js",
+        "./scripts/wikipedia.js"
+      ],
       "run_at": "document_end",
       "matches": ["https://en.wikipedia.org/wiki/*"]
     }

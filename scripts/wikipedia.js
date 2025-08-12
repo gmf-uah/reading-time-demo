@@ -1,23 +1,42 @@
-function renderReadingTime(titleElement, articleElement) {
-    const text = articleElement.textContent;
-    console.log(JSON.stringify(text));
-    // so this is the length of the TITLE, not the article contents.
-    // That's why the word count only ever seems to be 1 or 2. --gmf
-    console.log(text.length)
+const article_text = (() => {
+    const article_element = document.querySelector("#mw-content-text");
+    const exclude_element_tags = [
+        "noscript",
+        "style",
+        ".shortdescription",
+        ".side-box",
+        ".external.text",
+        ".reflist",
+        ".reference",
+        ".printfooter",
+        ".noprint",
+        ".mw-editsection-bracket",
+        "#setindexbox",
+        "[title='Edit section: References']"
+    ]
+
+    const filter = (element) => {
+        if (exclude_element_tags.some(tag => element.matches(tag))) {
+            return true;
+        }
+        return false;
+    }
+
+    return GetTextContent(article_element, false, filter)
+})()
+
+const reading_time = (() => {
     const wordMatchRegExp = /[^\s]+/g; // Regular expression
-    const words = text.matchAll(wordMatchRegExp);
-    console.log(words.length)
-    // matchAll returns an iterator, convert to array to get word count
+    const words = article_text.matchAll(wordMatchRegExp);
     const wordCount = [...words].length;
-    console.log(wordCount)
-    const readingTime = Math.round(wordCount / 200);
-    const badge = document.createElement("p");
-    // Use the same styling as the publish information in an article's header
-    badge.classList.add("color-secondary-text", "type--caption");
-    badge.textContent = `⏱️ ${readingTime} min read`;
+    return Math.round(wordCount / 200); // Assuming average reading speed of 200 words per minute
+})();
 
-    titleElement.insertAdjacentElement("afterend", badge);
-}
+const title_element = document.querySelector("h1");
 
-renderReadingTime(document.querySelector("#firstHeading"), document.querySelector("#mw-content-text"));
-console.log("Hello world!")
+const badge = document.createElement("p");
+// Use the same styling as the publish information in an article's header
+badge.classList.add("color-secondary-text", "type--caption");
+badge.textContent = `⏱️ ${reading_time} min read`;
+
+title_element.insertAdjacentElement("afterend", badge);
