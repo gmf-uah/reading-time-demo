@@ -1,20 +1,31 @@
 {
-  "name": "Justify",
-  "description": "Makes multi-line text use the justified alignment.",
+  "name": "Reading Time",
+  "description": "Estimates the time it takes to read an article.",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
     "default_popup": "hello.html",
-    "default_icon": "icons/16.png"
+    "default_icon": "clock.png"
   },
   "icons": {
-    "128": "icons/128 2.png"
+    "16": "clock.png",
+    "48": "clock.png",
+    "128": "clock.png"
   },
+  "permissions": ["scripting"],
   "content_scripts": [
     {
-      "js": ["content.js"],
+      "js": ["./scripts/generic.js"],
+      "run_at": "document_end",
       "matches": ["<all_urls>"],
-      "run_at": "document_end"
+      "exclude_matches": [
+        "https://en.wikipedia.org/wiki/*"
+      ]
+    },
+    {
+      "js": ["./scripts/wikipedia.js"],
+      "run_at": "document_end",
+      "matches": ["https://en.wikipedia.org/wiki/*"]
     }
   ]
 }
