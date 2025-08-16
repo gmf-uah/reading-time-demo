@@ -72,3 +72,8 @@ badge_element.style.fontFamily = "Segoe UI Light, Helvetica Neue, Helvetica, Ari
 badge_element.style.fontWeight = "300"; // light
 
 // title_element.insertAdjacentElement("afterend", badge);
+
+/*
+test for:
+https://en.wikipedia.org/wiki/Cneoridium_dumosum_(Nuttall)_Hooker_F._Collected_March_26,_1960,_at_an_Elevation_of_about_1450_Meters_on_Cerro_Quemaz%C3%B3n,_15_Miles_South_of_Bah%C3%ADa_de_Los_Angeles,_Baja_California,_M%C3%A9xico,_Apparently_for_a_Southeastward_Range_Extension_of_Some_140_Miles
+*/
